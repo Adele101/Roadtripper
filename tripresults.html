@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style> #map {height: 500px; width: 100%; background-color: grey; text-align:center;}</style>
+	<title>Roadtrip results</title>
+	<link rel='stylesheet' href='assets/style.css' type='text/css'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+	<div class='container'>
+		<h1>RoadTripper</h1>
+		<h1>{{start}} to {{stop}} will take {{duration}}.</h1>
+				<div class="row">
+					<div class='col-md-7'>
+						<h2 style='text-decoration:underline'>Points of Interest on Your Road Trip</h2>
+					<div class='row'>
+					<div class="col-md-2">
+						{% for url,name in places.items() %}
+							<a href={{url}}>{{name}}</a><br />
+						{% endfor %}					
+					</div>						
+					<div class="col-md-10">
+						<div class='centered' id="map"></div>
+						<script>
+							function initMap() {
+								var map = new google.maps.Map(document.getElementById('map'), {
+									zoom: 3,
+									center: {lat: 39.8282, lng: -98.5795}
+								});
+					
+								var marker = new google.maps.Marker({
+									position: {lat: {{start_lat}}, lng: {{start_lng}}},
+									map: map,
+									icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+								})	
+								
+								var marker = new google.maps.Marker({
+									position: {lat: {{end_lat}}, lng: {{end_lng}}},
+									map: map,
+									icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+								})	
+								var marker = new google.maps.Marker({
+									position: {lat: {{lat1}}, lng: {{lng1}}},
+									map: map,
+									icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+								})
+								var marker = new google.maps.Marker({
+									position: {lat: {{lat2}}, lng: {{lng2}}},
+									map: map,
+									icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+								})
+								var marker = new google.maps.Marker({
+									position: {lat: {{lat3}}, lng: {{lng3}}},
+									map: map,
+									icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+								})
+								var marker = new google.maps.Marker({
+									position: {lat: {{lat4}}, lng: {{lng4}}},
+									map: map,
+									icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+								})
+								var marker = new google.maps.Marker({
+									position: {lat: {{lat5}}, lng: {{lng5}}},
+									map: map,
+									icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+								})
+					
+								var marker = new google.maps.Marker({
+									position: {lat: {{lat6}}, lng: {{lng6}}},
+									map: map,
+									icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+								})
+								var marker = new google.maps.Marker({
+									position: {lat: {{lat7}}, lng: {{lng7}}},
+									map: map,
+									icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+								})
+								var marker = new google.maps.Marker({
+									position: {lat: {{lat8}}, lng: {{lng8}}},
+									map: map,
+									icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+								})
+								var marker = new google.maps.Marker({
+									position: {lat: {{lat9}}, lng: {{lng9}}},
+									map: map,
+									icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+								})
+								var marker = new google.maps.Marker({
+									position: {lat: {{lat10}}, lng: {{lng10}}},
+									map: map,
+									icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+								})
+							}
+						</script>
+						<script async defer
+						src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2HMfoN3z88236p1PzhcmWK_Nrte0PRQk&callback=initMap">
+						</script>		
+					</div>	
+					</div>	
+					</div>						
+
+				<div class='col-md-4'>
+						<h2 style="text-decoration:underline"> Weather Conditions </h2>
+						<div class='row'>
+					<div class='col-md-6'>
+						<h3>The lowest temperature on your trip is {{low}} degrees Fahrenheit.</h3>
+						<h3>The highest temperature is {{high}} degrees Fahrenheit.</h3> 					
+					</div>
+					<div class='col-md-6'>
+						{% if alert != None %}
+							<h3> There are {{alert|length}} alerts for your trip:</h3>
+								{% for key,value in alert.items() %}
+										<div class="centered">
+											<a href='https://google.com/search?q={{key}}'>{{key}}</a>
+										</div>
+								{% endfor %}		
+						{% else %}
+							<h3>There are no current weather advisories for your trip.</h3>
+						{% endif %}				
+					</div>	
+					</div>
+				</div>	
+				</div>		
+				<br />
+	<br /><div><a href = 'temps'>Try A Different Trip</a></div>
+	</div>
+</body>
+</html>
